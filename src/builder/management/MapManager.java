@@ -67,7 +67,8 @@ public class MapManager {
             map = LoadClassFromJsonObj(Map.class, Config.maps, "starter");
             zone = LoadWholeJson(Zone.class, map.file);
 
-            List<GameObject> terrainObjects = GLTFLoader.loadScene(zone.terrain);
+            var returnData = GLTFLoader.loadScene(zone.terrain);
+            List<GameObject> terrainObjects = returnData.object;
             mapObjects.addAll(terrainObjects);
 
             List<Mesh> terrainMeshes = new ArrayList<>();

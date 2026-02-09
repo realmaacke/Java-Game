@@ -1,6 +1,5 @@
 package builder.base;
 
-import builder.Terrain;
 import builder.objects.Collider2D;
 import builder.objects.FixedCamera;
 import builder.objects.GameObject;
@@ -173,10 +172,10 @@ public class Renderer {
         return ray;
     }
 
-    private void drawAABB(GameObject obj, Collider2D col, Matrix4f mvp) {
+    private void drawAABB(Collider2D col, Matrix4f mvp) {
 
-        Vector3f min = new Vector3f(col.min).mul(obj.transform.scale);
-        Vector3f max = new Vector3f(col.max).mul(obj.transform.scale);
+        Vector3f min = new Vector3f(col.min);
+        Vector3f max = new Vector3f(col.max);
 
         float x0 = min.x;
         float y0 = min.y;
@@ -253,7 +252,7 @@ public class Renderer {
         glDisable(GL_DEPTH_TEST); // X-ray mode
 
         for(Collider2D col : obj.colliders)
-            drawAABB(obj, col,mvp);
+            drawAABB(col,mvp);
 
         glEnable(GL_DEPTH_TEST);
     }

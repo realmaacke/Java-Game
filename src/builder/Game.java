@@ -57,27 +57,6 @@ public class Game {
         world.objects.addAll(builtMap.elements);
         world.terrain = builtMap.terrain;
 
-//        mapManager = new MapManager();
-
-//        MapManager.ReturnData returnData =  mapManager.loadMap("next");
-//        var elements = returnData.Elements;
-//        var objects = returnData.Terrain;
-
-//        world.objects.addAll(elements);
-//
-//        for (GameObject obj : objects) {
-//            obj.parent = sceneRoot;
-//            world.objects.add(obj);
-//
-//            if ("Terrain".equals(obj.name)) {
-//                world.terrain = new Terrain((obj.meshes));
-//            } else if ("NPC".equals(obj.name)) {
-//                obj.blocking = true;
-//                obj.selectable = true;
-//                obj.colliderRadius = 1f;
-//            }
-//        }
-
         for (int i = 0; i < 5; i++) {
 
             GameObject obj = new GameObject();
@@ -100,8 +79,6 @@ public class Game {
 
         boolean lmb = glfwGetMouseButton(WindowContext.window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
         boolean rmb = glfwGetMouseButton(WindowContext.window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS;
-
-//        Vector3f hit = renderer.getMouseGroundIntersection();
 
         Renderer.Ray ray = renderer.getMouseRay();
         Vector3f groundHit = renderer.getMouseGroundIntersection();

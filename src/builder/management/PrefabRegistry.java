@@ -15,9 +15,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PrefabRegistry {
-    private Gson json;
+    private final Gson json = new Gson();
 
     public static class PrefabAxis {
         public float x;
@@ -27,37 +28,26 @@ public class PrefabRegistry {
 
     public static class Prefab extends ObjectDetails {
         public String name;
-        public String type;
+        public GameObjectType type;
         public String mesh;
         public boolean selectable;
         public boolean blocking;
         public PrefabAxis scale;
-        public PrefabAxis position;
 
-        public GameObject convertToGameObject(Vector3f position) {
-            GameObject obj = new GameObject();
-            obj.name = name;
-            obj.type = GameObjectType.fromString(type);
-            obj.meshes = GLTFLoader.loadMeshes("prefabs/" + obj.name + "/" + mesh);
-            obj.selectable = selectable;
-            obj.blocking = blocking;
-            obj.transform.scale.set(
-                    scale.x,
-                    scale.y,
-                    scale.z
-            );
+        public GameObject convertToGameObject(Vector3f worldPosition) {
+            GameObject object = new GameObject();
+            object.transform.scale.set(scale.x, scale.y, scale.z);
+            object.transform.position.set(worldPosition);
+            object.name = name;
+            object.type = type;
+            System.out.println(mesh);
+            object.meshes = GLTFLoader.loadScene(("prefabs/" + name + "/" + mesh)).mesh;
+            object.selectable = selectable;
+            object.blocking = blocking;
 
-            obj.transform.position = position;
-
-            for (Mesh mesh : obj.meshes) {
-                obj.colliders.add(mesh.buildCollider2D());
-            }
-            return obj;
+            object.AddMeshCollider();
+            return object;
         }
-    }
-
-    public PrefabRegistry() {
-        json = new Gson();
     }
 
     public ArrayList<GameObject> convertAllToGameObjects() {

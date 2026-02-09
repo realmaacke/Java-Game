@@ -162,7 +162,17 @@ public class GLTFLoader {
         }
     }
 
-    public static List<GameObject> loadScene(String path) {
+
+    public static class ReturnData {
+            public List<Mesh> mesh;
+            public List<GameObject> object;
+
+            public ReturnData(List<Mesh> meshes, List<GameObject> objects) {
+                this.mesh = meshes;
+                this.object = objects;
+            }
+    }
+    public static ReturnData loadScene(String path) {
         AIScene scene = load(path);
 
         List<Mesh> meshes = loadMeshes(path);
@@ -173,6 +183,6 @@ public class GLTFLoader {
 
         aiReleaseImport(scene);
 
-        return objects;
+        return new ReturnData(meshes, objects);
     }
 }
