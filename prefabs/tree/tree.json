@@ -1,0 +1,8 @@
+{
+  "name": "tree",
+  "type": "environment",
+  "mesh": "tree.glb",
+  "selectable": false,
+  "blocking": true,
+  "scale": {"x":  1, "y":  1, "z":  1}
+}

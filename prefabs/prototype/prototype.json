@@ -1,0 +1,8 @@
+{
+  "name": "prototype",
+  "type": "environment",
+  "mesh": "prototype.glb",
+  "selectable": true,
+  "blocking": true,
+  "scale": {"x":  1, "y":  1, "z":  1}
+}

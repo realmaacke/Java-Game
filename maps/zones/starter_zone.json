@@ -1,0 +1,14 @@
+{
+  "terrain": "prefabs/terrains/Terrain.glb",
+
+  "objects" : [
+    {
+      "prefab": "prototype",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 4
+      }
+    }
+  ]
+}
